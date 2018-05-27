@@ -1,0 +1,69 @@
+\documentclass[a4paper,11pt]{article} 
+\usepackage{latexsym} 
+\usepackage[MeX]{polski} 
+\usepackage{indentfirst}
+\usepackage[utf8]{inputenc} 
+\author{Jan~Starczewski \\ Bartosz~Michałowski} 
+\title{
+	\Huge Specyfikacja funkcjonalna \\
+	automat komórkowy\\
+	\textbf{"The game of life"}
+} 
+\frenchspacing 
+\begin{document} 
+	\maketitle 
+	\newpage
+	\tableofcontents 
+	\newpage
+	\section {Opis ogólny}
+		\subsection{Nazwa programu} 
+			Nazwa programu: \texttt{life\_game\_generator}
+		\subsection{Poruszany problem}
+			Automatem komórkowym określa się system składający się z pojedynczych komórek, znajdujących się obok siebie. Ich układ przypomina szachownicę. Każda z~komórek może przyjąć jeden ze stanów, przy czym liczba stanów jest skończona, ale dowolnie duża. Stan komórek zmieniany jest synchronicznie w~zależności od komórek otaczających oraz przyjętych reguł. Poruszanym problemem jest implementacja takowego automatu komórkowego \textbf{The game of life} autorstwa Johna Conwaya i~stworzenie zestawu plików graficznych obrazujących kolejne generacje komórek począwszy od zapewnionej przez użytkownika generacji początkowej. Program jest napisany w~ \textbf{języku~C}. Użytkownik powinien mieć możliwość wyboru typu sąsiedztwa spośród sąsiedztwa Moore'a i~von~Neumanna. Przyjęto zasadę że figury po napotkaniu krawędzi przechodzą przez nią i pojawiają się na przeciwległej stronie planszy.	
+	\section{Opis funkcjonalności}
+		\subsection{Jak korzystać z programu}
+			Skompilowany program przeznaczony jest do uruchomienia z~interfejsu tekstowego wraz z~niezbędnymi argumentami tj. ścieżką do generacji początkowej w formie tekstowej(plik tekstowy), liczbą generacji, rodzajem sąsiedztwa i nazwą katalogu wyjściowego. Program tworzy folder o podanej nazwie wyjścia w~katalogu \texttt{./output}. W~przypadku niepowodzenia program zakończy pracę, a~odpowiednie komunikaty zostaną zawarte
+			w~pliku log w~katalogu głównym. Jeżeli utworzenie miejsca docelowego zakończy się sukcesem, zapisane do niego zostaną kolejne stany jako pliki o nazwie \texttt{gen\_[NUM].png}, gdzie NUM to liczba porządkowa kolejnych generacji. W razie niepowodzenia jednego z~zachodzących procesów, wszelkie komunikaty znajdą się w pliku \texttt{log} w~katalogu wyjściowym.
+			Katalog ten zawiera również pierwszą i~ostatnią generację w postaci plików tekstowych o~nazwach odpowiednio, \texttt{first\_gen} i~\texttt{last\_gen}.
+		\subsection{Uruchomienie programu}
+			Wywołanie~:\texttt{life\_game\_gen} \textbf{[ścieżka\_generacji\_początkowej] [liczba\_generacji] [rodzaj\_sąsiedztwa] [nazwa\_katalogu\_wyjściowego]}
+			
+		\begin{description}
+			\item \textbf{[ścieżka\_generacji\_początkowej]}   :~ścieżka do pliku zawierającego generacje początkową w formie tekstowej
+			\item \textbf{[liczba\_generacji]}~: oczekiwana liczba generacji
+			\item \textbf{[rodzaj\_sąsiedztwa]}~: wybór rodzaju sąsiedztwa:\\ \texttt{-M} sąsiedztwo Moore'a, \texttt{-N} sąsiedztwo von Neummana
+			\item \textbf{[nazwa\_katalogu\_wyjściowego]}~: nazwa katalogu wyjściowego
+		\end{description}
+		Wywołanie przykładowe~: \texttt{life\_game\_gen fgen.txt 10 -M 10gen}
+		\subsection{Możliwości programu}
+			Program wczytuje dane wejściowe, zawierające rozmiar planszy i~konfigurację początkową.
+			Bazując na pierwotnym ułożeniu komórek, tworzone są ich kolejne generacje. Odpowiednie stany są zapisywane w~postaci plików, o~rozszerzeniu PNG, do wytyczonego folderu. Użytkownik ma możliwość wyboru rodzaju sąsiedztwa (zasad), na podstawie których powstaną kolejne generacje.	
+		\section{Format danych i opis funkcjonalności} 
+			\subsection{Słownik}
+				\textbf{Sąsiedztwo} to otoczenie rozpatrywanej komórki. Sąsiedztwo Moore'a określa zbiór komórek stykających się bokami i~rogami (osiem), z~komórką rozpatrywaną, a~von~Neumanna, tylko bokami (cztery).
+			\subsection{Struktura katalogów}
+				Katalog główny zawierający plik wywołania. Podkatalog \texttt{./output} zawierający odpowiednio, kolejne katalogi wypełnione utworzonymi obrazami w~formacie PNG, jak i~pierwszą, ostatnią generację w~formacie tekstowym.
+			\subsection{Przechowywanie danych w programie}
+				Stan komórek przechowywany jest w postaci jednowymiarowego wektora, deklarowanego po wczytaniu pliku zawierającego dane do pierwszej generacji. Istnieją dwie takie struktury danych, gdzie jedna zawiera w~danej chwili stan początkowy, a~druga stan kolejny.
+			\subsection{Dane wejściowe}
+				Program na wejściu otrzymuje plik tekstowy, w~którym pierwsze dwie liczby oznaczają kolejno: szerokość i~wysokość planszy. Kolejne liczby to komórki w stanie początkowym, w~kolejności od lewej do prawej, wierszami od góry do dołu. Martwa komórka oznaczona jest przez cyfrę zero, żywa przez jeden.
+			\subsection{Dane wyjściowe}
+				Program generuje pliki o rozszerzeniu PNG, nazwach \texttt{gen\_[NUM].png}, gdzie NUM to kolejne liczby całkowite, odpowiadające kolejnym generacjom. Pole białe oznacza komórkę martwą, czarne żywą. Pierwsza, jak i~ostatnia generacja zostanie zapisana w plikach tekstowych, odpowiednio \texttt{first\_gen} i~\texttt{last\_gen}. Utworzony zostanie także plik tekstowy \texttt{log.txt}, w którym znajdą się komunikaty od programu.	
+			\subsection{Komunikaty zwrotne}
+				Przykładowe komunikaty zwrotne zawarte w~plikach \texttt{log.txt}:
+				\begin{enumerate}
+				  \item Błąd odczytu/zapisu: 
+				    \begin{enumerate}
+				      \item Nie udało się wczytać pliku wejściowego - spowodowane nieistnieniem danego pliku lub brakiem uprawnień
+				      \item Nie udało się utworzyć plików wynikowych - spowodowane brakiem uprawnień
+				      \item Błędny format pliku wejściowego - plik wejściowy zawiera niedozwolone znaki
+				    \end{enumerate}
+				    \item Błąd pamięci:
+				    \begin{enumerate}
+				    	\item Niewystarczająca ilość pamięci - pamięć dostępna jest zbyt mała, aby utworzyć wektor o zadanym rozmiarze
+				    \end{enumerate}
+				\end{enumerate}
+		\section{Testowanie}
+			\subsection{Ogólny przebieg testowania}
+				Każdy moduł programu zostanie przetestowany dla prostych, zarówno błędnych, jak i~poprawnych danych wejściowych. Proste przykłady ułatwią weryfikację poprawności wyniku oraz identyfikację ewentualnych błędów. Obsługa błędów zostanie przetestowana korzystając z~danych błędnych, zapewnionych dzięki analizie krytycznych fragmentów kodu. Główna uwaga zostanie skupiona na sprawdzeniu poprawności odczytu/zapisu danych oraz algorytmu tworzącego generacje.		
+\end{document}

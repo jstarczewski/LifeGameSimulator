@@ -1,0 +1,17 @@
+states
+
+
+w pliku states znajduja sie dwie funkcje check_Moore i check_Neumman
+odpowiadaja one za ustalenie stanu komorki w nastepnej generacji
+
+int check_Moore(board play_board, int index);
+
+funkcja check_Moore zawiera algorytm sprwadzajacy kolejne stany komorek dla
+zasad Moora sprawdza 8 komorek wokol rozpatrywanej, wartosc zwracana jest
+ilosc zywych komorek.
+
+int check_Neumman(board play_board, int index);
+
+funckja check_Neumann zawiera analogiczne operacje do funkcji poprzednio
+opisanej, jednakze rozpatrywane sa tylko cztery komorki, wedlug zasad von
+Neummana, wartosc zwracana to ilosc zywych komorek.

@@ -1,0 +1,67 @@
+
+
+Funkcje
+
+
+board generate_board(char *file_name);
+
+Funkcja generate_board jest wywolywana funkcji sterujacej main. Przyjmowanym
+argumentem jest zazwa pliku, w tym wypadki jest to tablica napisow **argv,
+ktora otrzymuje jako jeden z parametrow funkcja sterujaca main. Zestaw
+instrukcji zawartych w generate_board odpowiada za otworzenie pliku, przeczytanie go i umieszczenie jego zawartosci w strukturze board, ktora jest implementowana w
+odpowiednej kolejnosci wewnatrz tej funkcji, a pozniej zwrocona.
+
+void generate_states(board play_board, int states, const_char *neighbourhood)
+
+Funkcja generate_states jest przyrownywana do wskaznika na strukture board,
+ktora jest zarazem jednym z argumentow jak i ta wielkoscia, ktora jest
+zwracana przez funkcje. Odpowiada za zdefiniowanie ile plikow (jest to drugi
+argument) png ma powstac, oraz jakie sasiedztwo jest brane pod uwage podczas generowania kolejnych
+stanow, przekazane za pomoca trzeciegu argumentu funkcji, ktory jest jednym z
+napisow zawartych w tablicy argv. Funkcja w swoim ciele w petli while wywoluje
+funkcje generujaca plik png a potem przechodzaca do kolejnego stanu
+
+static board next_state(board play_board, int states, const_char *neighbourhood)
+
+wewnatrz funkcji next_state zostaje stworzony i zaincjalizowana drugra
+struktura danych, do ktorej zostanie przepisana nowa konfiguracja komorek, a
+nastepnie zostanie ona zwrocona. W funkcji wystepuje pole int checked_value do
+ktorego zostaje przyrownaa w zaleznosci od otrzymanego parametru neighbourhood 
+
+
+/////// jeszcze raz
+
+board generate_board(char *file_name);
+
+Funkcja generate board jest wywolywana z poziomu funkcji sterujacej main.
+Zwaraca wskaznik na strukture life_game_board. Przyjmuje nazwe pliku, ktory ma
+byc przez nia otworzony. Wewnatrz funkcji zostaje stworzony wskaznik na
+strukture board, a po owocnym otworzeniu pliku wypelniony wartosciami
+poczatkowymi
+
+
+void generate_states(board play_board, int states, const_char *neighbourhood)
+
+Funkcja generate_states otrzymuje wskaznik na strukture przechowywujacy stan
+komorek, ilosc generacji oraz argument odpowiadajacy za zdefiniowanie
+sasiedztwa. Funkcja zawiera w sobie petle odpowiadajaca za generacje png oraz
+zmiane stanu.
+
+static board next_state(board play_board, int states, const_char *neighbourhood)
+
+Funkcja next_state wstaznik na strukture zawierajaca terazniejszy stan
+komorek, oraz napis definiujacy jakie sasiedztwo jest rozpatrywane. Wewnatrz
+funkcji tworzona jest nowa struktura o parametrach identycznych jak ta
+otrzymana jako 1 argument. Petla for w funkcji iteruje po komorkach planszy
+odwoluje sie do algorytmu definiujacego ilosc zywych sasiadow przepisuje
+odpowiednia wartosc do nowej struktury ktora jest przyrownywana do tej
+otrzymanej jako parametr i zwracana. Wewnatrz funkcji znajduja sie tez
+instrukcje zwalniajace pamiec.
+
+void print_board(board play_board);
+
+funkcja print_board odpowiada za wypisanie planszy dla komorek w sposob
+imitujacy prostokatna plansze.
+
+
+ 

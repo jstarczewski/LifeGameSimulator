@@ -1,0 +1,4 @@
+TO-DO
+	Tobiasz Siemianski - Specyfikacja Implementacyjna
+/////
+DEADLINE Sroda 14.03.2018 godz 20;00

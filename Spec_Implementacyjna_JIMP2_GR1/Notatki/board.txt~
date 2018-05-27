@@ -1,0 +1,35 @@
+
+
+
+BOARD.TXT
+
+Wewnatrz modulu board znajduje sie struktura danych przechowywujaca informacje
+o stanie komorek, szerokosc, wysokosc planszy jak i inne dane potrzebne do
+funkcjonowania. Struktura nosi nazwe life_game_board, jednak w programie jest
+reprezentowana jako wskaznik na nia o nazwie board.
+
+board init_board();
+
+funkcja zwracajaca wskaznik na strukture board, alokuje dla niej pamiec i
+przypisuje polu index wartosc 0.
+
+board init_vector(board play_board)
+
+funkcja init_vecotr alokuje pamiec dla wektora znajdujacego sie w strukturze
+na ktora wskazuje argument funkcji. Do okreslenia rozmiaru potrzebne jest
+wartosc pol width i height otrzymanego argumentu. Zwrocony zostaje otrzymany
+argument.
+
+board set_width(board play_boardm, int width)
+
+funkcja przypisuje wartosc width polu width
+
+board set_height(board play_board, int height) 
+
+funkcja przypisuje wartosc height polu height
+
+board add(board play_board, int value)
+
+funkcja dodaje wartosc z parametru value do miejsca wskazywanego przez
+skladowa struktury o nazwie index na ktora wskazuje pierwszy otrzymany
+argument, zwracny jest ten same wskaznik jaki zostal otrzymany.  

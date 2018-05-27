@@ -1,0 +1,3 @@
+/home/jaskola/Documents/Studia/JiMP/2018L_JIMP2_repozytorium_gr1/life_game_generator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/jaskola/Documents/Studia/JiMP/2018L_JIMP2_repozytorium_gr1/life_game_generator/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jaskola/Documents/Studia/JiMP/2018L_JIMP2_repozytorium_gr1/life_game_generator/cmake-build-debug/CMakeFiles/life_game_generator.dir

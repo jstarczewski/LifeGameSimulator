@@ -1,0 +1,4 @@
+Log z dnia Thu Apr 12 19:53:56 2018
+1: Uruchomienie programu
+2: Błędna zawartość pliku z pierwszą generacją.
+3: Program zakończył pracę bez utworzenia generacji.

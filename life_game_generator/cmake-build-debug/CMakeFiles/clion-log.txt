@@ -1,0 +1,4 @@
+/home/jaskola/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/181.4203.549/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/jaskola/Documents/Studia/JiMP/2018L_JIMP2_repozytorium_gr1/life_game_generator
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jaskola/Documents/Studia/JiMP/2018L_JIMP2_repozytorium_gr1/life_game_generator/cmake-build-debug
